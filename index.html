@@ -3,8 +3,52 @@
 <head>
 <meta charset="UTF-8">
 <!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-54NRHB4RRF"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-54NRHB4RRF");</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-54NRHB4RRF">
+// ── GA4 Section View Tracking ──
+var sectionIds=['pain','services','cases','process','team','contact'];
+var sectionTracked={};
+var secObs=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting && !sectionTracked[e.target.id]){
+      sectionTracked[e.target.id]=true;
+      var name=e.target.id;
+      if(e.target.classList.contains('pain'))name='pain';
+      if(e.target.classList.contains('team'))name='team';
+      gtag('event','section_view_'+name);
+    }
+  });
+},{threshold:0.2});
+// sections with id
+document.querySelectorAll('section[id]').forEach(function(s){secObs.observe(s);});
+// sections without id (pain, team) — use class
+document.querySelectorAll('section.pain,section.team').forEach(function(s){
+  if(!s.id)s.id=s.classList.contains('pain')?'pain':'team';
+  secObs.observe(s);
+});
+</script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-54NRHB4RRF");
+// ── GA4 Section View Tracking ──
+var sectionIds=['pain','services','cases','process','team','contact'];
+var sectionTracked={};
+var secObs=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting && !sectionTracked[e.target.id]){
+      sectionTracked[e.target.id]=true;
+      var name=e.target.id;
+      if(e.target.classList.contains('pain'))name='pain';
+      if(e.target.classList.contains('team'))name='team';
+      gtag('event','section_view_'+name);
+    }
+  });
+},{threshold:0.2});
+// sections with id
+document.querySelectorAll('section[id]').forEach(function(s){secObs.observe(s);});
+// sections without id (pain, team) — use class
+document.querySelectorAll('section.pain,section.team').forEach(function(s){
+  if(!s.id)s.id=s.classList.contains('pain')?'pain':'team';
+  secObs.observe(s);
+});
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="반복되는 업무를 자동화하고, 시스템으로 만듭니다. 기획부터 개발, 운영까지 한 팀이 책임지는 맞춤 개발 파트너.">
 <meta property="og:title" content="CODEBODA — 업무 자동화 &amp; 시스템 개발">
@@ -16,7 +60,29 @@
 <link rel="icon" type="image/png" href="/favicon.png">
 <title>CODEBODA — 업무 자동화 & 시스템 개발</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+// ── GA4 Section View Tracking ──
+var sectionIds=['pain','services','cases','process','team','contact'];
+var sectionTracked={};
+var secObs=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting && !sectionTracked[e.target.id]){
+      sectionTracked[e.target.id]=true;
+      var name=e.target.id;
+      if(e.target.classList.contains('pain'))name='pain';
+      if(e.target.classList.contains('team'))name='team';
+      gtag('event','section_view_'+name);
+    }
+  });
+},{threshold:0.2});
+// sections with id
+document.querySelectorAll('section[id]').forEach(function(s){secObs.observe(s);});
+// sections without id (pain, team) — use class
+document.querySelectorAll('section.pain,section.team').forEach(function(s){
+  if(!s.id)s.id=s.classList.contains('pain')?'pain':'team';
+  secObs.observe(s);
+});
+</script>
 <style>
   :root{--bg:#faf9f6;--surface:#fff;--ch:#1a1a1a;--mid:#7a7a7a;--light:#aaa;--border:#dedbd6;--bl:#eae8e4;--warm:#f5f3f0;--kakao:#FAE100;--kt:#3C1E1E;}
   *{margin:0;padding:0;box-sizing:border-box;}
@@ -277,10 +343,10 @@
   <div class="n">
     <a class="nl" href="#top">CODEBODA</a>
     <div class="nls">
-      <a href="#services" data-section="services">서비스</a>
-      <a href="#cases" data-section="cases">사례</a>
-      <a href="#process" data-section="process">프로세스</a>
-      <a href="#contact" class="nc">상담 신청</a>
+      <a href="#services" data-section="services" onclick="gtag('event','nav_click_services')">서비스</a>
+      <a href="#cases" data-section="cases" onclick="gtag('event','nav_click_cases')">사례</a>
+      <a href="#process" data-section="process" onclick="gtag('event','nav_click_process')">프로세스</a>
+      <a href="#contact" class="nc" onclick="gtag('event','nav_click_contact')">상담 신청</a>
     </div>
     <button class="hamburger" onclick="document.getElementById('mmenu').classList.add('open')" aria-label="메뉴">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
@@ -304,11 +370,11 @@
     <h1>반복되는 업무를<br>자동화하고,<br><em>시스템으로 만듭니다</em></h1>
     <p>엑셀과 수작업에 쓰는 시간, 절반 이상 줄일 수 있습니다.<br>우리 회사 업무 흐름에 맞는 시스템을 설계하고 개발합니다.</p>
     <div class="hbtns">
-      <button class="bkk" onclick="window.open('https://pf.kakao.com/_lxaxaTX/chat','_blank')">
+      <button class="bkk" onclick="gtag('event','kakao_chat_hero');window.open('https://pf.kakao.com/_lxaxaTX/chat','_blank')">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C6.48 3 2 6.58 2 11c0 2.83 1.88 5.32 4.7 6.73-.15.56-.82 2.95-.85 3.12 0 0-.01.06.03.09.04.02.09.01.09.01.12-.02 3.47-2.28 4.01-2.66.65.09 1.32.14 2.02.14 5.52 0 10-3.58 10-8 0-4.42-4.48-8-10-8z"/></svg>
         카카오톡 상담
       </button>
-      <button class="bgh" onclick="location.href='#contact'">문의 남기기</button>
+      <button class="bgh" onclick="gtag('event','hero_cta_contact');location.href='#contact'">문의 남기기</button>
     </div>
   </div>
   <div class="hv">
@@ -402,7 +468,7 @@
           <div class="cm"><h4>0건</h4><p>출고 누락</p></div>
           <div class="cm"><h4 data-count="2" data-suffix="개월">0개월</h4><p>개발 기간</p></div>
         </div>
-        <a class="clink">사례 자세히 보기</a>
+        <a class="clink" onclick="gtag('event','case_detail_click')">사례 자세히 보기</a>
       </div>
     </div>
   </div>
@@ -485,7 +551,7 @@
       <span class="free">초기 상담은 무료입니다.</span>
       <span class="response-time">평일 기준 24시간 내 회신드립니다.</span>
       <div class="ci">
-        <div class="cii"><div class="ciic"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" opacity="0.6"><path d="M12 3C6.48 3 2 6.58 2 11c0 2.83 1.88 5.32 4.7 6.73-.15.56-.82 2.95-.85 3.12 0 0-.01.06.03.09.04.02.09.01.09.01.12-.02 3.47-2.28 4.01-2.66.65.09 1.32.14 2.02.14 5.52 0 10-3.58 10-8 0-4.42-4.48-8-10-8z"/></svg></div><div><div class="cil">카카오톡</div><div class="civ"><a href="https://pf.kakao.com/_lxaxaTX/chat" target="_blank" style="color:var(--ch);text-decoration:none;">CODEBODA</a></div></div></div>
+        <div class="cii"><div class="ciic"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" opacity="0.6"><path d="M12 3C6.48 3 2 6.58 2 11c0 2.83 1.88 5.32 4.7 6.73-.15.56-.82 2.95-.85 3.12 0 0-.01.06.03.09.04.02.09.01.09.01.12-.02 3.47-2.28 4.01-2.66.65.09 1.32.14 2.02.14 5.52 0 10-3.58 10-8 0-4.42-4.48-8-10-8z"/></svg></div><div><div class="cil">카카오톡</div><div class="civ"><a href="https://pf.kakao.com/_lxaxaTX/chat" target="_blank" style="color:var(--ch);text-decoration:none;" onclick="gtag('event','kakao_chat_contact')">CODEBODA</a></div></div></div>
         <div class="cii"><div class="ciic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div><div class="cil">이메일</div><div class="civ">codeboda.official@gmail.com</div></div></div>
       </div>
     </div>
@@ -510,7 +576,7 @@
 <section class="cta">
   <h2>지금 바로 상담하세요</h2>
   <p>카카오톡으로 편하게 시작하세요. 비용은 상담 후 안내드립니다.</p>
-  <button class="cta-btn" onclick="window.open('https://pf.kakao.com/_lxaxaTX/chat','_blank')">
+  <button class="cta-btn" onclick="gtag('event','kakao_chat_bottom');window.open('https://pf.kakao.com/_lxaxaTX/chat','_blank')">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C6.48 3 2 6.58 2 11c0 2.83 1.88 5.32 4.7 6.73-.15.56-.82 2.95-.85 3.12 0 0-.01.06.03.09.04.02.09.01.09.01.12-.02 3.47-2.28 4.01-2.66.65.09 1.32.14 2.02.14 5.52 0 10-3.58 10-8 0-4.42-4.48-8-10-8z"/></svg>
     카카오톡으로 상담하기
   </button>
@@ -600,6 +666,7 @@ function submitForm(){
   btn.textContent='보내는 중...';
   btn.disabled=true;
 
+  gtag('event','form_submit');
   emailjs.init('k70ETTZ5JBo0ObAxN');
   emailjs.send('service_hu5r1iw','template_91nvw1f',{
     name: nameVal,
@@ -607,6 +674,7 @@ function submitForm(){
     message: msgVal || '(내용 없음)'
   }).then(function(){
     document.getElementById('formSuccess').classList.add('show');
+    gtag('event','form_success');
     btn.textContent='문의 보내기';
     btn.disabled=false;
   },function(err){
@@ -622,6 +690,28 @@ function resetForm(){
   document.getElementById('fcontact').value='';
   document.getElementById('fmsg').value='';
 }
+
+// ── GA4 Section View Tracking ──
+var sectionIds=['pain','services','cases','process','team','contact'];
+var sectionTracked={};
+var secObs=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting && !sectionTracked[e.target.id]){
+      sectionTracked[e.target.id]=true;
+      var name=e.target.id;
+      if(e.target.classList.contains('pain'))name='pain';
+      if(e.target.classList.contains('team'))name='team';
+      gtag('event','section_view_'+name);
+    }
+  });
+},{threshold:0.2});
+// sections with id
+document.querySelectorAll('section[id]').forEach(function(s){secObs.observe(s);});
+// sections without id (pain, team) — use class
+document.querySelectorAll('section.pain,section.team').forEach(function(s){
+  if(!s.id)s.id=s.classList.contains('pain')?'pain':'team';
+  secObs.observe(s);
+});
 </script>
 </body>
 </html>
